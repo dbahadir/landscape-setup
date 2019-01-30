@@ -41,11 +41,18 @@ dns = {
 master = {
   count = ${config["clusters"]["master"]["count"]}
   volume_size = ${config["clusters"]["master"]["volume_size"]}
+  flavor_name = "${config["clusters"]["master"]["flavor_name"]}"
 }
 
 worker = {
   count = ${config["clusters"]["worker"]["count"]}
   volume_size = ${config["clusters"]["worker"]["volume_size"]}
+  flavor_name = "${config["clusters"]["worker"]["flavor_name"]}"
+}
+
+bastion = {
+  image_name = "${config["clusters"]["bastion"]["image_name"]}"
+  flavor_name = "${config["clusters"]["bastion"]["flavor_name"]}"
 }
 
 etcd_backup = ${utils.dict_to_tfvars(config["etcd_backup"])}
