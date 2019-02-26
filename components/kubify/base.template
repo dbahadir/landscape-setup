@@ -12,6 +12,7 @@ addons=utils.dict_to_tfvars(config["addons"]["variant_all"])
 misc=config["misc"]["variant_all"].copy()
 if currentVariant in config["misc"] and config["misc"][currentVariant] is not None:
   misc.update(config["misc"][currentVariant])
+nss='","'.join(misc["dns_nameservers"])
 %>
 <%include file="terraform.tfvars.${profileName}.template" args="config=config" />
 
@@ -70,3 +71,4 @@ service_cidr = "${misc["service_cidr"]}"
 pod_cidr = "${misc["pod_cidr"]}"
 
 selfhosted_etcd = "false"
+dns_nameservers = ["${nss}"]
